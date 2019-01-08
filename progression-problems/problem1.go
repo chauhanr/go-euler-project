@@ -1,4 +1,4 @@
-package progression
+package levelone
 
 import (
 	"errors"
