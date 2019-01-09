@@ -12,17 +12,18 @@ func LargestPrimeFactor2(value int64) int64 {
 		value = value / 2
 	}
 	var i int64
-	for i = 3; i <= value; i += 2 {
+	for i = 3; i <= Sqrt(value); i += 2 {
 		for value%i == 0 {
 			maxPrime = i
 			value = value / i
 		}
-		fmt.Printf("Value :%d |  i: %d |  maxPrime: %d\n", value, i, maxPrime)
+		//fmt.Printf("Value :%d |  i: %d |  maxPrime: %d\n", value, i, maxPrime)
 	}
 
-	if maxPrime == -1 {
+	if maxPrime == -1 || value != 1 {
 		maxPrime = value
 	}
+
 	return maxPrime
 }
 
