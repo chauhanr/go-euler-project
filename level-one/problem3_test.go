@@ -25,7 +25,7 @@ func TestLargetKValue(t *testing.T) {
 
 func TestIsPrime(t *testing.T) {
 	testCases := []struct {
-		value   uint64
+		value   int64
 		isPrime bool
 	}{
 		{100, false},
@@ -36,7 +36,7 @@ func TestIsPrime(t *testing.T) {
 	}
 
 	for _, tcase := range testCases {
-		isPrime := isPrime(tcase.value)
+		isPrime := isPrimeInt(tcase.value)
 		if isPrime != tcase.isPrime {
 			t.Errorf("%d value has a mismatch is prime: %t but was found to be %t", tcase.value, tcase.isPrime, isPrime)
 		}

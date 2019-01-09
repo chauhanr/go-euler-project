@@ -100,3 +100,16 @@ func isPrime(a uint64) bool {
 	}
 	return true
 }
+
+func isPrimeInt(a int64) bool {
+	sq := math.Sqrt(float64(a))
+	sqInt := int64(sq)
+
+	for sqInt > 1 {
+		if a%sqInt == 0 {
+			return false
+		}
+		sqInt--
+	}
+	return true
+}
