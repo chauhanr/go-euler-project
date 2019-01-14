@@ -35,7 +35,7 @@ var grid2 = [][]int{
 func TestGridProduct(t *testing.T) {
 	var max int64
 	max = 3100
-	mprod := MaxProduct(grid, 20, 4)
+	mprod := MaxProduct(grid, 10, 4)
 	if mprod != max {
 		t.Errorf("Expected value %d but got %d", max, mprod)
 	}
