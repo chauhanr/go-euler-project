@@ -2,38 +2,27 @@ package levelone
 
 import "fmt"
 
-func AddLargeNumber(grid [][]int, d int, r int) []int {
-	var res = make([]int, d)
-	var rem int
-	rem = 0
-	var i, j int
-
-	for i = d - 1; i >= 0; i-- {
-		sum := rem
-		for j = 0; j <= r-1; j++ {
-			//fmt.Printf("(%2d, %2d)", j, i)
-			sum += grid[j][i]
+func FindCollatzSeqCount(limit int) int {
+	max := -1
+	for i := 13; i < limit; i++ {
+		c := CollatzCount(i)
+		if c > max {
+			fmt.Printf("Max count is %d for value %d\n", c, i)
+			max = c
 		}
-		ld := sum % 10
-		res[i] = ld
-		rem = sum / 10
 	}
-
-	for rem != 0 {
-		d := rem % 10
-		sl := []int{d}
-		res = append(sl, res...)
-		rem = rem / 10
-	}
-	return res
-
+	return max
 }
 
-func printGrid(grid [][]int, c, r int) {
-	for i := 0; i < r-1; i++ {
-		for j := 0; j < c-1; j++ {
-			fmt.Printf("%d ", grid[i][j])
+func CollatzCount(n int) int {
+	count := 1
+	for n != 1 {
+		count++
+		if n%2 == 0 {
+			n = n / 2
+		} else {
+			n = 3*n + 1
 		}
-		fmt.Printf("\n")
 	}
+	return count
 }
