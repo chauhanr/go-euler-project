@@ -2,10 +2,12 @@ package levelone
 
 import "fmt"
 
-var solution = [15][29]int{}
+var solution [][]int
 
-func initSolution() {
-	for x := 0; x < 15; x++ {
+func initSolution(xn, yn int) {
+	solution = make([][]int, xn)
+	for x := 0; x < xn; x++ {
+		solution[x] = make([]int, yn)
 		for y := 0; y < 29; y++ {
 			//fmt.Printf("(%d,%d)\n", x, y)
 			solution[x][y] = 0
@@ -14,7 +16,7 @@ func initSolution() {
 }
 
 func LargestPathSum(x, y, xn, yn int, py [][]int) int {
-	initSolution()
+	initSolution(xn, yn)
 	traversePy(x, y, xn, yn, 0, py)
 	printSolution(xn, yn)
 	max := 0

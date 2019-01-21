@@ -25,7 +25,7 @@ func TestLargestPathSum(t *testing.T) {
 	var x, y int
 	x = 0
 	y = 14
-	max := 342323
+	max := 1074
 	m := LargestPathSum(x, y, 15, 29, py)
 	if m != max {
 		t.Errorf("Expected value %d but got %d\n", max, m)
