@@ -8,19 +8,30 @@ func TestFindDecimal(t *testing.T) {
 		ln  int
 		lim int
 	}{
-		{2, 1, 16},
-		{3, 16, 16},
-		{5, 1, 16},
-		{6, 16, 16},
-		{7, 16, 16},
-		{9, 16, 16},
+		{2, 0, 16},
+		{3, 1, 16},
+		{5, 0, 16},
+		{6, 1, 16},
+		{7, 6, 16},
+		{8, 0, 16},
+		{9, 1, 16},
+		{12, 2, 16},
+		{13, 6, 16},
+		{17, 16, 32},
+		{983, 982, 32},
 	}
 
 	for _, tc := range tCases {
-		r := FindDecimal(tc.d, tc.lim)
-		lr := len(r)
-		if lr != tc.ln {
-			t.Errorf("Expected the array %v to have %d elements but got %d elements", r, tc.ln, lr)
+		r := FindRecurringDecimalCount(tc.d)
+		if r != tc.ln {
+			t.Errorf("for num %d expected to have %d recurring digist but got %d elements", tc.d, tc.ln, r)
 		}
+	}
+}
+
+func TestFindLongestRecCount(t *testing.T) {
+	max, n := FindLongestDecimalCount(1000)
+	if max != 982 && n != 983 {
+		t.Errorf("Expected the (max,n) to be (%d,%d) but got (%d,%d)\n", 131, 17, max, n)
 	}
 }

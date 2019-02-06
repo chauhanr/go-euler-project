@@ -2,33 +2,51 @@ package leveltwo
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
 )
 
-func FindDecimal(dem int, lim int) []int {
-	var d float64
-	d = float64(1) / float64(dem)
-	s := fmt.Sprintf("%f", d)
-	fmt.Printf("result : %s\n", s)
-	dec := strings.Split(s, ".")[1]
-	num := int64(0)
-	var err error
-	if len(dec) > lim {
-		num, err = strconv.ParseInt(dec[:lim], 10, 64)
-	} else {
-		num, err = strconv.ParseInt(dec, 10, 64)
+func FindLongestDecimalCount(l int) (max int, n int) {
+	max = 0
+	for i := 2; i < l; i++ {
+		rec := FindRecurringDecimalCount(i)
+		if rec > max {
+			max = rec
+			n = i
+		}
 	}
-	if err != nil {
-		fmt.Printf("Error when parsing int %d is %s\n", dec, err.Error())
-		return []int{}
-	}
+	fmt.Printf("max: %d, n: %d\n", max, n)
+	return max, n
+}
 
+func FindRecurringDecimalCount(dem int) int {
 	a := []int{}
-	for num > 0 {
-		a = append([]int{int(num % 10)}, a...)
-		num = num / 10
+	rem := map[int]int{}
+	num := 1
+	for num != 0 {
+		for num < dem {
+			num *= 10
+			if num < dem {
+				if _, ok := rem[num]; ok {
+					break
+				} else {
+					a = append(a, 0)
+					rem[num] = 1
+				}
+			}
+		}
+		q := num / dem
+		num = num % dem
+		if _, ok := rem[num]; ok {
+			break
+		} else {
+			rem[num] = 1
+		}
+		a = append(a, q)
 	}
-	fmt.Printf("arr - %v\n", a)
-	return a
+	//fmt.Printf("array %v\n", a)
+	//fmt.Printf("Recurring decimal count for number %d is %d\n", dem, len(rem))
+
+	if num == 0 {
+		return 0
+	}
+	return len(rem)
 }
