@@ -24,7 +24,7 @@ func TestGetDigitFactorialSum(t *testing.T) {
 
 func TestFindSumSpecial(t *testing.T) {
 	var e int64
-	e = 1900
+	e = 40730
 	s := FindAllFactSumN()
 	if s != e {
 		t.Errorf("Sum of all special number expected %d but got %d", e, s)
