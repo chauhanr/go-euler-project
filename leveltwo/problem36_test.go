@@ -53,7 +53,7 @@ func TestIsPalindrome(t *testing.T) {
 func TestFindPalSum(t *testing.T) {
 	var n, e int64
 	n = 1000000
-	e = 1999898
+	e = 872187
 
 	sum := FindPalindromeSum(n)
 	if e != sum {
