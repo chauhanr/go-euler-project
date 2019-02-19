@@ -75,6 +75,9 @@ func findNextPrime(n int) int {
 }
 
 func IsPrimeInt(a int64) bool {
+	if a == 1 {
+		return false
+	}
 	sq := math.Sqrt(float64(a))
 	sqInt := int64(sq)
 
