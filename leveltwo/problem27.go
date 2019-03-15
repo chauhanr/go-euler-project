@@ -49,6 +49,13 @@ func LongestRunQuadValue(a, b int) int {
   have a limit to the maximum number of numbers the algo with try and that is 1000
 */
 func findNextPrime(n int) int {
+	if n == 2 {
+		return 3
+	} else if n == 3 {
+		return 5
+	} else if n == 5 {
+		return 7
+	}
 	d := n / 3
 	p1 := 3*d - 1
 	p2 := 3*d + 1
