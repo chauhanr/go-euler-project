@@ -4,12 +4,15 @@ import "fmt"
 
 func GetConsectivePrimeFactorTerm(cons int) int {
 	count := 0
-	i := 9
+	i := 134000
 	s := 9
 	pfMap := map[int]int{}
 	p := 2
-	for count != cons && p < i {
+	for count != cons && p < i && !IsPrimeInt(int64(i)) {
 		n := i
+		if n%1000 == 0 {
+			fmt.Printf("n : %d\n", n)
+		}
 		p = 2
 		pfactors := 0
 		for n != 1 && p < i {
